@@ -22,13 +22,6 @@ class SegmentTree {
 
   explicit SegmentTree(const int n) : tree(n * 2, V::identity()) {}
 
-  explicit SegmentTree(const int n, VT v) : SegmentTree(n) {
-    build(vector< VT >(n, v));
-  }
-
-  explicit SegmentTree(const vector< VT > &vs) : SegmentTree(vs.size()) {
-    build(vs);
-  }
 
   void build(const vector< VT > &vs) {
     int n = vs.size();
