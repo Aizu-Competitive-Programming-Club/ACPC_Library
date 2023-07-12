@@ -15,13 +15,11 @@ class SegmentTree {
     tree[index] = V::operation(tree[index << 1 | 0], tree[index << 1 | 1]);
   }
 
- public:
+public:
   using value_type = VT;
 
   SegmentTree() = default;
-
   explicit SegmentTree(const int n) : tree(n * 2, V::identity()) {}
-
 
   void build(const vector< VT > &vs) {
     int n = vs.size();
@@ -48,13 +46,7 @@ class SegmentTree {
     }
   }
 
-  VT fold(int index) const {
-    assert(0 <= index);
-    assert(index < size());
-
-    return tree[index + size()];
-  }
-
+  // O(log(last - first))
   VT fold(int first, int last) const {
     assert(0 <= first);
     assert(first <= last);
@@ -83,6 +75,8 @@ class SegmentTree {
     return V::operation(fold_l, fold_r);
   }
 
+  // === no need to implement from here ===
+  // O(1)
   VT fold_all() const {
     return (size() ? tree[1] : V::identity());
   }
